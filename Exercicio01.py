@@ -4,10 +4,10 @@
 # A primeira vale 40% e a segunda vale 60%
 # Elabore um algoritmo que leia as duas notas e mostre a media do estudante
 
-nota01 = float(input("Insira a nota do trabalho: "))
-nota02 = float(input("Insira a nota da prova: "))
+nota_trabalho = float(input("Insira a nota do trabalho: "))
+nota_prova = float(input("Insira a nota da prova: "))
 
-media_pond = (nota01*40 + nota02*60)/100
+media_pond = (nota_trabalho*40 + nota_prova*60)/100
 
 print(f"A media final eh: {media_pond}")
 
