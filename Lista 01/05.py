@@ -3,6 +3,8 @@
 # preço de tabela em 2 parcelas
 # preço à vista com 5% de desconto
 
+print("============== No caixa da loja ==============")
+
 price = input("Insira o preço do produto: ")
 price_number = float(price)
 

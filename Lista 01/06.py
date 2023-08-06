@@ -2,6 +2,8 @@
 
 import math
 
+print("============== Arquitetura Egípcia Simulator ==============")
+
 cateto_oposto = float(input("Insira o valor do cateto oposto: "))
 cateto_adjacente = float(input("Insira o valor do cateto adjacente: "))
 
@@ -10,4 +12,4 @@ def teorema_de_pitagoras(a, b):
     return hipotenusa
 
 
-print(f"O valor da hipotenusa para esse triângulo é {teorema_de_pitagoras(cateto_oposto, cateto_adjacente): .2f}")
+print(f"O valor da hipotenusa para esse triângulo é{teorema_de_pitagoras(cateto_oposto, cateto_adjacente): .2f}")

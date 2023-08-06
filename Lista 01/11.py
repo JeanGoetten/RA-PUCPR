@@ -1,5 +1,7 @@
 # ler nome de usuário e então mostrar "Bem-vindo NOME! Seu nome tem 4 letras"
 
+print("============== Informação Útil Simulator ==============")
+
 name = input("Insira seu nome: ")
 
 name_uppercase = name.upper()

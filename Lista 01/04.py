@@ -2,6 +2,8 @@
 
 import math
 
+print("============== Calculadora de área de círculo ==============")
+
 diameter = float(input("Insira o diâmetro: "))
 
 def circle_area(a):
@@ -9,4 +11,4 @@ def circle_area(a):
     return area
 
 
-print(f"A área do seu círculo é {circle_area(diameter): .2f}")
+print(f"A área do seu círculo é{circle_area(diameter): .2f}")

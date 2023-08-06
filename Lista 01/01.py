@@ -1,5 +1,7 @@
 # ler um número inteiro e escrever seu sucessor e antecessor
 
+print("============== Sucessor e antecessor de um número inteiro ==============")
+
 numero_inteiro = int(input("Insira um número inteiro: "))
 
 

@@ -1,5 +1,7 @@
 # ler o valor do salário e calcular quantos salários mínimos equivale
 
+print("============== Salário em salários mínimos ==============")
+
 salario = input("Insira o valor de seu salário: ")
 
 def converte_para_salario_minimo(a):
