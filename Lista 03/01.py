@@ -1,0 +1,1 @@
+# Elabore um algoritmo que leia um número inteiro e verifique se ele é par ou ímpar.

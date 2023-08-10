@@ -1,0 +1,2 @@
+# A partir das informações contidas na tabela abaixo, elabore um algoritmo que leia a massa em kg de um boxeador e mostre a qual categoria
+# ele pertence. Caso ele não se encaixe, informe “Categoria inferior a Super-médio”. Lembrando que 1 quilograma = 2,20462262 libras
