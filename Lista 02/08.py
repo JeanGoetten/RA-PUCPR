@@ -5,3 +5,19 @@
 # ambiguidade ler o artigo da Wikipédia sobre “Prefixo binário”.
 # Elabore um algoritmo que leia a capacidade de um disco rígido (em notação comercial) e mostre quantos
 # gibibytes de fato ele tem.
+
+print("============== Capacidade real de um dispositivo de armazenamento digital ==============")
+
+capacidade_anunciada = float(input("Insira a capacidade anunciada do dispositivo (GB): "))
+
+def conversor(capacidade_anunciada):
+    dif = (capacidade_anunciada * 7.4)/100
+    capacidade_real = capacidade_anunciada - dif
+    return capacidade_real
+
+
+def conversor2(capacidade_anunciada):
+    capacidade_real = capacidade_anunciada/1.073741824
+    return capacidade_real
+
+print(f"Cpacidade real ~= {conversor2(capacidade_anunciada): .2f} gibibytes")
