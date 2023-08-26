@@ -35,6 +35,10 @@ def custo():
     custo = quantidade_de_latas() * lata_price
     return custo
 
+def custo_arredondado_lata_inteira():
+    custo = math.ceil(quantidade_de_latas()) * lata_price
+    return custo
 
 # Saídas
 print(f"O custo para pintar um tanque de{superficie_cilindro(h, r): .1f}m² é de ${custo(): .2f} com{quantidade_de_latas(): .1f} latas de tinta (5L)")
+print(f"O custo para pintar um tanque de{superficie_cilindro(h, r): .1f}m² é de ${custo_arredondado_lata_inteira(): .2f} com {math.ceil(quantidade_de_latas())} latas de tinta (5L)")
