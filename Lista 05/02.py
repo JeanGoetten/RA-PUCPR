@@ -7,12 +7,12 @@
 # 2               Libra           1 libra esterlina = 6,03 reais
 # 3               Euro            1 euro = 5,10 reais
 
-print("======================= Cambio monetario ==========================")
+print("============================== Cambio monetario =================================")
 
-print("OPCAO ______________________ MOEDA ________________________ COTACAO")
-print("- 1 ........................ Dolar ........................ 1 dólar dos EUA = 5,09 reais")
-print("- 2 ........................ Libra ........................ 1 libra esterlina = 6,03 reais")
-print("- 3 ........................ Euro  ........................ 1 euro = 5,10 reais")
+print("OPCAO ______________________________ MOEDA ______________________________ COTACAO")
+print("- 1 ............................. Dolar (USD) ........................ 1 dólar dos EUA = 5,09 reais")
+print("- 2 ............................. Libra (GBP) ........................ 1 libra esterlina = 6,03 reais")
+print("- 3 ............................. Euro (EUR)  ........................ 1 euro = 5,10 reais")
 
 print(" ")
 print("====== TAXAS ======")
@@ -27,20 +27,38 @@ while True:
     else:
         break
 
-amount = float(input("Valor na moeda selecionada: "))
+amount = float(input("Valor na moeda selecionada (ex.: 89.75): "))
 
 def custo_para_dolar(amount):
     dolar = 5.09
-    custo = amount * dolar
+    custo = (amount * dolar) + taxes(amount)
     return custo
+
+
 def custo_para_libra(amount):
     libra = 6.03
-    custo = amount * libra
+    custo = (amount * libra) + taxes(amount)
     return custo
+
+
 def custo_para_euro(amount):
     euro = 5.1
-    custo = amount * euro
+    custo = (amount * euro) + taxes(amount)
     return custo
 
 
+def taxes(amount):
+    taxes = 0
+    if amount < 2000:
+        taxes = amount * (5 / 100)
+    if amount >= 2000:
+        taxes = amount * (3 / 100)
 
+    return taxes
+
+if cod == 1:
+    print(f"{amount: .2f} USD: {custo_para_dolar(amount): .2f} BRL")
+elif cod == 2:
+    print(f"{amount: .2f} GBP: {custo_para_libra(amount): .2f} BRL")
+else:
+    print(f"{amount: .2f} EUR: {custo_para_euro(amount): .2f} BRL")
