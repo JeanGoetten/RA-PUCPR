@@ -3,24 +3,14 @@
 # esquerdo é o segundo, o inferior esquerdo é o terceiro e o inferior direito é o quarto. Elabore um algoritmo que leia os
 # valores de uma coordenada (x, y) do plano cartesiano e informe em qual quadrante este ponto se encontra.
 
-print("===================== Batalha Naval Pós Racionalista ==========================")
-
-import random
-
-map_min_x = random.randint(0, 999)
-map_max_x = random.randint(0, 999)
-map_min_y = random.randint(0, 999)
-map_max_y = random.randint(0, 999)
-
-map_min_x = map_min_x * (-1)
-map_min_y = map_min_y * (-1)
+print("===================== Batalha Naval ==========================")
 
 print("Fontes de inteligência informam que o inimigo está se aproximando dos mares do sul.")
 print("Suas ordens são para exterminá-lo. ")
-print(f"Os aviões estão sobrevoando a região que vai de: ")
-print(f"ponto {map_min_y} ao {map_max_y} de norte ao sul  ")
-print(f"ponto {map_min_x} ao {map_max_x} de lest ao oeste  ")
+print("Os aviões estão sobrevoando a região que vai do ponto 100 ao -100 norte e sul e leste ao oeste. ")
 print("Informe as coordenadas para que possam disparar corretamente!")
+
+import random
 
 enemy_pos = [0, 0]
 
@@ -28,13 +18,14 @@ x = int(input("Coordenada norte/sul: "))
 y = int(input("Coordenada leste/oeste: "))
 
 def quadrante_externo(x, y):
-    if x > map_max_x and y > map_max_y:
+    quadrante = ""
+    if x > 100 and y > 100:
         quadrante = "primeiro"
-    elif x < map_max_x and y > map_max_y:
+    elif x < -100 and y > 100:
         quadrante = "segundo"
-    elif x < map_max_x/2 and y < map_max_y/2:
+    elif x < -100 and y < -100:
         quadrante = "terceiro"
-    elif x > map_max_x and y < map_max_y/2:
+    elif x > 100 and y < -100:
         quadrante = "quarto"
     else:
         return
@@ -42,25 +33,25 @@ def quadrante_externo(x, y):
     return quadrante
 
 def quadrante(x, y):
-    if x > (map_max_x + abs(map_min_x))/2 and y > (map_max_y + abs(map_min_y))/2:
+    quadrante = ""
+    if x > 0 and y > 0:
         quadrante = "primeiro"
-    elif x < (map_max_x + abs(map_min_x))/2 and y > (map_max_y + abs(map_min_y))/2:
+    elif x < 0 and y > 0:
         quadrante = "segundo"
-    elif x < (map_max_x + abs(map_min_x))/2 and y < (map_max_y + abs(map_min_y))/2:
+    elif x < 0 and y < 0:
         quadrante = "terceiro"
     else:
         quadrante = "quarto"
 
     return quadrante
 
-
-if x > (map_max_x + abs(map_min_x))/2 and x < map_max_x:
-    if y > (map_max_y + abs(map_min_y))/2 and y < map_max_y:
+if x > 0 and x <= 100:
+    if y > 0 and y <= 100:
         print(f"Disparo no {quadrante(x, y)} quadrante realizado. Aguardando relatório de combate...")
     else:
         print(f"Disparo no {quadrante(x, y)} quadrante realizado. Aguardando relatório de combate...")
-elif x < (map_max_x + abs(map_min_x))/2 and x > map_min_x:
-    if y > (map_max_y + abs(map_min_y))/2 and y < map_max_y:
+elif x < 0 and x > -100:
+    if y > 0 and y <= 100:
         print(f"Disparo no {quadrante(x, y)} quadrante realizado. Aguardando relatório de combate...")
     else:
         print(f"Disparo no {quadrante(x, y)} quadrante realizado. Aguardando relatório de combate...")
@@ -71,8 +62,8 @@ else:
 
 
 def enemy_position():
-    enemy_x = random.randint(map_min_x, map_max_x)
-    enemy_y = random.randint(map_min_y, map_max_y)
+    enemy_x = random.randint(-100, 100)
+    enemy_y = random.randint(-100, 100)
     enemy_position = [enemy_x, enemy_y]
     return enemy_position
 
