@@ -8,6 +8,7 @@
 # 8) cor
 # 9) jokenpo
 # 10) escolha livre
+# 11) Fim
 
 import random
 import  re
@@ -105,6 +106,7 @@ def make_random():
 def make_color(nome):
     global cor
     global nome_da_cor
+    global password
 
     if nome == nome_da_cor:
         return True
@@ -126,6 +128,7 @@ def jokenpo():
 def jokenplay(play):
     global cpu_play
     global jokenwin
+    global password
 
     if play.upper() == "PAPEL":
         cpu_play = jokenpo()
@@ -187,13 +190,22 @@ while True:
 
     elif not make_color(user_color):
         user_color = input(f"{cor} Cor desse texto: \033[0;0m")
-        make_color(user_color)
+        if make_color(user_color):
+            password += nome_da_cor
 
     elif not jokenwin:
         user_play = input(f"Pedra, papel ou tesoura? ")
-        jokenplay(user_play)
+        if jokenplay(user_play):
+            password += user_play
 
     else:
+        print()
+        print("Parabéns! Você completou o Jogo da Senha! Caminhe em direção ao sol...")
+        print("Por: Jean Goetten")
+        password += "Sol"
+        print()
+        print(password)
+        print()
         finish = input("Aperte enter para encerrar...")
         break
 
