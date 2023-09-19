@@ -5,8 +5,8 @@
 # 5) The digits in your password must add up to 25.
 # 6) Your password must include a roman numeral.
 # 7) Incluir número sorteado (11..99)
-# 8) escolha livre
-# 9) escolha livre
+# 8) cor
+# 9) jokenpo
 # 10) escolha livre
 
 import random
@@ -19,6 +19,14 @@ special_char = ['~', ':', "'", '+', '[', '\\', '@', '^', '{', '%', '(', '-', '"'
 roman_char = ["I", "V", "X", "L", "C", "D", "M"]
 
 message_sum = "Insira digitos para a senha somar 25"
+user_color = "baboseira"
+cor = ""
+nome_da_cor = ""
+
+user_play = "baboseira"
+cpu_play = ""
+jokenwin = False
+
 def subtitle_progress():
     subtitle = str(len(password)) + " caracteres" + " - Soma: " + str(have_sum(password, True))
     if is_number(password):
@@ -30,6 +38,10 @@ def subtitle_progress():
     if is_roman(password):
         subtitle += " - Número romano: ok"
         subtitle += " - Número aleatório: ok"
+    if make_color(user_color):
+        subtitle += " - Cor: ok"
+        subtitle += f" - Jokenpo: cpu play {cpu_play}"
+
     return subtitle
 
 
@@ -55,7 +67,6 @@ def have_sub(senha_sub):
     for x in range(0, len(password) - 1):
         if password[x].isnumeric():
             if sub_index < len(senha_sub):
-                print(f"{senha_sub[sub_index]} for {x}")
                 password_list[x] = senha_sub[sub_index]
                 sub_index += 1
     password = ''.join(password_list)
@@ -89,6 +100,50 @@ def is_roman(senha_roman):
 
 def make_random():
     return random.randint(11, 99)
+
+
+def make_color(nome):
+    global cor
+    global nome_da_cor
+
+    if nome == nome_da_cor:
+        return True
+    else:
+        color = ['\033[31m', '\033[32m', '\033[34m', '\033[33m', '\033[36m']
+        color_names = ['vermelho', "verde", "azul", "amarelo", "ciano"]
+
+        color_id = random.randint(0, 4)
+        cor = color[color_id]
+        nome_da_cor = color_names[color_id]
+
+
+def jokenpo():
+    cpu_play = random.randint(0, 2)
+    options = ["PAPEL", "PEDRA", "TESOURA"]
+    return options[cpu_play]
+
+
+def jokenplay(play):
+    global cpu_play
+    global jokenwin
+
+    if play.upper() == "PAPEL":
+        cpu_play = jokenpo()
+        if cpu_play == "PEDRA":
+            jokenwin = True
+            return True
+    elif play.upper() == "PEDRA":
+        cpu_play = jokenpo()
+        if cpu_play == "TESOURA":
+            jokenwin = True
+            return True
+    elif play.upper() == "TESOURA":
+        cpu_play = jokenpo()
+        if cpu_play == "PAPEL":
+            jokenwin = True
+            return True
+    else:
+        return False
 
 
 while True:
@@ -130,6 +185,15 @@ while True:
             password += str_roman
             password += str(random.randint(11, 99))
 
+    elif not make_color(user_color):
+        user_color = input(f"{cor} Cor desse texto: \033[0;0m")
+        make_color(user_color)
+
+    elif not jokenwin:
+        user_play = input(f"Pedra, papel ou tesoura? ")
+        jokenplay(user_play)
+
     else:
+        finish = input("Aperte enter para encerrar...")
         break
 
