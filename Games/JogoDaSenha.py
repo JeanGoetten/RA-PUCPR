@@ -10,6 +10,7 @@
 # 10) escolha livre
 
 import random
+import  re
 print("================== Jogo da Senha ==================")
 
 password = str()
@@ -39,25 +40,25 @@ def is_number(senha_number):
 
 
 def have_sum(senha_sum, sum):
-    sub_index = 0
     sum_digit = 0
-    global message_sum
-    global password
-    new_password = password
     for x in senha_sum:
         if x.isnumeric():
             z = int(x)
             sum_digit = sum_digit + z
-    if not sum:
-        for x in range(0, len(password) - 1):
-            if password[x].isnumeric():
-                if sub_index < len(senha_sum):
-                    print(f"{senha_sum[sub_index]} for {x}")
-                    new_password = password.replace(password[x], senha_sum[sub_index])
-                    print(new_password)
-                    sub_index += 1
-
     return sum_digit
+
+
+def have_sub(senha_sub):
+    sub_index = 0
+    global password
+    password_list = list(password)
+    for x in range(0, len(password) - 1):
+        if password[x].isnumeric():
+            if sub_index < len(senha_sub):
+                print(f"{senha_sub[sub_index]} for {x}")
+                password_list[x] = senha_sub[sub_index]
+                sub_index += 1
+    password = ''.join(password_list)
 
 
 def is_upper(senha_upper):
@@ -115,7 +116,7 @@ while True:
         if have_sum(password, True) > 25:
             str_sum = input(f"Substitua números para a senha somar 25: ")
             if str_sum.isnumeric():
-                have_sum(str_sum, False)
+                have_sub(str_sum)
         else:
             str_sum = input(f"Adicione números para a senha somar 25: ")
             if str_sum.isnumeric():
