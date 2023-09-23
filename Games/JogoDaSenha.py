@@ -5,13 +5,16 @@
 # 5) The digits in your password must add up to 25.
 # 6) Your password must include a roman numeral.
 # 7) Incluir número sorteado (11..99)
-# 8) cor
+# 8) cor do texto
 # 9) jokenpo
-# 10) escolha livre
+# 10) bandeiras
 # 11) Fim
 
 import random
-import  re
+from PIL import Image
+import requests
+from io import BytesIO
+
 print("================== Jogo da Senha ==================")
 
 password = str()
@@ -28,6 +31,12 @@ user_play = "baboseira"
 cpu_play = ""
 jokenwin = False
 
+country_id = ["AD", "AU", "AR", "BE", "BR", "CN", "DE", "UY", "UA", "UG"]
+country = ["ANDORRA", "AUSTRÁLIA", "ARGENTINA", "BÉLGICA", "BRASIL", "CHINA", "ALEMANHA", "URUGUAI", "UCRÂNIA", "UGANDA"]
+user_flag_name = ""
+random_index = 0
+
+
 def subtitle_progress():
     subtitle = str(len(password)) + " caracteres" + " - Soma: " + str(have_sum(password, True))
     if is_number(password):
@@ -42,6 +51,8 @@ def subtitle_progress():
     if make_color(user_color):
         subtitle += " - Cor: ok"
         subtitle += f" - Jokenpo: cpu play {cpu_play}"
+    if is_right_flag(user_flag_name):
+        subtitle += f" - Country: {user_flag_name.upper()}"
 
     return subtitle
 
@@ -149,6 +160,28 @@ def jokenplay(play):
         return False
 
 
+def fun_with_flags():
+    global random_index
+    random_index = random.randint(0, 9)
+    url = f"https://flagsapi.com/{country_id[random_index]}/flat/64.png"
+
+    response = requests.get(url)
+    img = Image.open(BytesIO(response.content))
+    img.show()
+
+
+def is_right_flag(user_flag_name):
+    global random_index
+    global password
+
+    if user_flag_name.upper() == country[random_index]:
+        password += user_flag_name
+        return True
+
+    else:
+        return False
+
+
 while True:
     print(f"Senha: {password} - {subtitle_progress()}")
     if len(password) < 5:
@@ -197,6 +230,10 @@ while True:
         user_play = input(f"Pedra, papel ou tesoura? ")
         if jokenplay(user_play):
             password += user_play
+
+    elif not is_right_flag(user_flag_name):
+        fun_with_flags()
+        user_flag_name = input(f"De que país é essa bandeira? ")
 
     else:
         print()
