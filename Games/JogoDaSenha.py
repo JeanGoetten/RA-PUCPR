@@ -35,6 +35,7 @@ country_id = ["AD", "AU", "AR", "BE", "BR", "CN", "DE", "UY", "UA", "UG"]
 country = ["ANDORRA", "AUSTRÁLIA", "ARGENTINA", "BÉLGICA", "BRASIL", "CHINA", "ALEMANHA", "URUGUAI", "UCRÂNIA", "UGANDA"]
 user_flag_name = ""
 random_index = 0
+is_user_flag = False
 
 
 def subtitle_progress():
@@ -51,7 +52,7 @@ def subtitle_progress():
     if make_color(user_color):
         subtitle += " - Cor: ok"
         subtitle += f" - Jokenpo: cpu play {cpu_play}"
-    if is_right_flag(user_flag_name):
+    if is_user_flag:
         subtitle += f" - Country: {user_flag_name.upper()}"
 
     return subtitle
@@ -173,13 +174,11 @@ def fun_with_flags():
 def is_right_flag(user_flag_name):
     global random_index
     global password
+    global is_user_flag
 
     if user_flag_name.upper() == country[random_index]:
         password += user_flag_name
-        return True
-
-    else:
-        return False
+        is_user_flag = True
 
 
 while True:
@@ -231,9 +230,10 @@ while True:
         if jokenplay(user_play):
             password += user_play
 
-    elif not is_right_flag(user_flag_name):
+    elif not is_user_flag:
         fun_with_flags()
         user_flag_name = input(f"De que país é essa bandeira? ")
+        is_right_flag(user_flag_name)
 
     else:
         print()
