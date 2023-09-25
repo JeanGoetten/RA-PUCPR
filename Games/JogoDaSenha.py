@@ -23,11 +23,11 @@ special_char = ['~', ':', "'", '+', '[', '\\', '@', '^', '{', '%', '(', '-', '"'
 roman_char = ["I", "V", "X", "L", "C", "D", "M"]
 
 message_sum = "Insira digitos para a senha somar 25"
-user_color = "baboseira"
+user_color = "78645765sdfh(*&)("
 cor = ""
-nome_da_cor = ""
+nome_da_cor = "¨*&¨(*¨GKG"
 
-user_play = "baboseira"
+user_play = ""
 cpu_play = ""
 jokenwin = False
 
@@ -63,6 +63,8 @@ def is_number(senha_number):
         if x.isdigit():
             return True
 
+    return False
+
 
 def have_sum(senha_sum, sum):
     sum_digit = 0
@@ -91,8 +93,7 @@ def is_upper(senha_upper):
         if i.isupper():  # verifica maiúsculas
             upper = True
             break
-        else:
-            upper = False
+
 
     return upper
 
@@ -129,7 +130,6 @@ def make_color(nome):
         color_id = random.randint(0, 4)
         cor = color[color_id]
         nome_da_cor = color_names[color_id]
-
 
 def jokenpo():
     cpu_play = random.randint(0, 2)
