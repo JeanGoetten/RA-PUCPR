@@ -20,11 +20,10 @@ with open('termos.csv', encoding="utf8") as csv_file:
 # VAR INIT
 palavra_semi_secreta = "-----"
 tentativas = 6
-tentativas_list = []
 player_try ="-----"
 
 # RANDOM TERMO FROM TERMO LIST
-r_number = random.randint(0, len(list_termos))
+r_number = random.randint(0, len(list_termos) - 1)
 palavra_secreta = list_termos[r_number]
 
 print(palavra_secreta)
@@ -33,7 +32,14 @@ def verifica_palavra(player_try):
     global resultado
     global letter
     palavra_semi_secreta_list = list(palavra_semi_secreta)
-    if len(player_try) == 5:
+
+    if len(player_try) != 5:
+        print("O termo precisa ter 5 letras")
+        return
+    elif not none_termo(player_try):
+        print("Termo inválido")
+        return
+    else:
         for i in range(len(palavra_secreta)):
             if unidecode(player_try[i].upper()) == palavra_secreta[i]:                     #certo
                 palavra_semi_secreta_list[i] = player_try[i].upper()
@@ -45,11 +51,16 @@ def verifica_palavra(player_try):
                 palavra_semi_secreta_list[i] = "-"
                 print('\033[31m' + player_try[i].upper(), end='' + '\033[0m')
         print()
-    else:
-        print("O termo precisa ter 5 letras")
-        return
     palavra_semi_secreta = ''.join(palavra_semi_secreta_list)
     return
+
+
+def none_termo(termo_verificar):
+    for x in list_termos:
+        #print(f"{x} == {unidecode(termo_verificar.upper())}")
+        if x == unidecode(termo_verificar.upper()):
+            return True
+    return False
 
 
 while True:
